@@ -4,17 +4,17 @@
  this doc is work in progress
 
 ### Overview
-This React Native application follows a well-structured, modular architecture with clear separation of concerns. The project is built using modern React patterns with TypeScript for type safety and Expo for simplified development workflow.
+This React Native application is designed with a modular, well-organized architecture that enforces a clear separation of concerns. It utilizes modern React patterns, TypeScript for strong type safety, and Expo to deliver a smooth and efficient development experience.
 
 ### Architecture
 
-Component-Based Architecture: Reusable UI components with clear interfaces
-Context Pattern: Global state management for settings and app configuration
-Custom Hooks: Encapsulated logic for sounds, settings, and game utilities
-Screen-Based Navigation: Stack navigation with React Navigation
-Type-Safe Development: Comprehensive TypeScript integration
+	•	Component-Based Architecture: Built with reusable UI components and well-defined interfaces to promote maintainability and scalability.
+	•	Context Pattern: Manages global state for app configuration and settings through a clean, centralized context layer.
+	•	Custom Hooks: Encapsulates core logic for sounds, settings, and game utilities, ensuring better reusability and cleaner components.
+	•	Screen-Based Navigation: Implements stack navigation using React Navigation for a structured and intuitive user flow.
+	•	Type-Safe Development: Leverages full TypeScript integration to provide robust type safety and improved developer experience.
 
-### Minimax Algo plus
+### Minimax Algo Plus
 
 ```typescript
 // Minimax Core Logic:
