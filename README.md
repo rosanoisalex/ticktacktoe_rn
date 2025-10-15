@@ -4,7 +4,7 @@
  this doc is work in progress
 
 ### Overview
-This React Native application is designed with a modular, well-organized architecture that enforces a clear separation of concerns. It utilizes modern React patterns, TypeScript for strong type safety, and Expo to deliver a smooth and efficient development experience.
+This React Native application is designed to help folks stay organized - enforces a clear separation of concerns. It utilizes modern React patterns, TypeScript for strong type safety, and Expo to deliver a smooth and efficient development experience.
 
 ### Architecture
 
