@@ -3,4 +3,4 @@ Prototype app for world's GREATEST tic-tac-toe player!
 
 
 Be Weary ...
-The ticktactoe bot lurking in this repo us a witch!
+The ticktactoe bot lurking in this repo is a witch!
