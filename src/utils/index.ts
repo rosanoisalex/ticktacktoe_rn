@@ -1,5 +1,5 @@
-export * from "./board";
-export * from "./types";
-export * from "./player";
+export * from './gameboard';
+export * from './types';
+export * from './player';
 
-export { default as colors } from "./colors";
+export { default as colors } from './colors';

@@ -1,11 +1,11 @@
-import { SafeAreaView, Dimensions, View } from "react-native";
-import React, { ReactElement, useEffect, useState, useRef } from "react";
-import { GradientBackground, Text } from "@components";
-import styles from "./main-game.styles";
-import { Board, Button } from "@components";
-import { BoardState, isEmpty, isTerminal, getBestMove, Cell } from "@utils";
+import { SafeAreaView, Dimensions, View } from 'react-native';
+import React, { ReactElement, useEffect, useState, useRef } from 'react';
+import { GradientBackground, Text } from '@components';
+import styles from './main-game.styles';
+import { Board, Button } from '@components';
+import { BoardState, isEmpty, isTerminal, getBestMove, Cell } from '@utils';
 
-const SCREEN_WIDTH = Dimensions.get("screen").width;
+const SCREEN_WIDTH = Dimensions.get('screen').width;
 
 export default function Game(): ReactElement {
   // prettier-ignore
@@ -15,10 +15,8 @@ export default function Game(): ReactElement {
         null,null,null,
     ]);
 
-  const [turn, setTurn] = useState<"HUMAN" | "BOT">(
-    Math.random() < 0.5 ? "HUMAN" : "BOT",
-  );
-  const [isHumanMaximizing, setIsHumanMaximizing] = useState<boolean>(true);
+  const [turn, setTurn] = useState<'HUMAN' | 'BOT'>(Math.random() < 0.5 ? 'HUMAN' : 'BOT');
+  const [isUserMax, setIsUserMax] = useState<boolean>(true);
 
   const [gamesCount, setGamesCount] = useState({
     wins: 0,
@@ -28,7 +26,7 @@ export default function Game(): ReactElement {
 
   const gameResult = isTerminal(state);
 
-  const insertCell = (cell: number, symbol: "x" | "o"): void => {
+  const insertCell = (cell: number, symbol: 'x' | 'o'): void => {
     const stateCopy: BoardState = [...state];
     if (stateCopy[cell] || isTerminal(stateCopy)) return;
     stateCopy[cell] = symbol;
@@ -36,54 +34,51 @@ export default function Game(): ReactElement {
   };
 
   const handleOnCellPressed = (cell: number): void => {
-    if (turn !== "HUMAN") return;
+    if (turn !== 'HUMAN') return;
 
-    insertCell(cell, isHumanMaximizing ? "x" : "o");
-    setTurn("BOT");
+    insertCell(cell, isUserMax ? 'x' : 'o');
+    setTurn('BOT');
   };
 
-  const getWinner = (winnerSymbol: Cell): "HUMAN" | "BOT" | "DRAW" => {
-    if (winnerSymbol === "x") {
-      return isHumanMaximizing ? "HUMAN" : "BOT";
+  const getWinner = (winnerSymbol: Cell): 'HUMAN' | 'BOT' | 'DRAW' => {
+    if (winnerSymbol === 'x') {
+      return isUserMax ? 'HUMAN' : 'BOT';
     }
-    if (winnerSymbol === "o") {
-      return isHumanMaximizing ? "BOT" : "HUMAN";
+    if (winnerSymbol === 'o') {
+      return isUserMax ? 'BOT' : 'HUMAN';
     }
-    return "DRAW";
+    return 'DRAW';
   };
 
   const newGame = () => {
     setState([null, null, null, null, null, null, null, null, null]);
-    setTurn(Math.random() < 0.5 ? "HUMAN" : "BOT");
+    setTurn(Math.random() < 0.5 ? 'HUMAN' : 'BOT');
   };
 
   useEffect(() => {
     if (gameResult) {
       const winner = getWinner(gameResult.winner);
-      if (winner === "HUMAN") {
+      if (winner === 'HUMAN') {
         setGamesCount({ ...gamesCount, wins: gamesCount.wins + 1 });
       }
-      if (winner === "BOT") {
+      if (winner === 'BOT') {
         setGamesCount({ ...gamesCount, losses: gamesCount.losses + 1 });
       }
-      if (winner === "DRAW") {
+      if (winner === 'DRAW') {
         setGamesCount({ ...gamesCount, draws: gamesCount.draws + 1 });
       }
     } else {
-      if (turn === "BOT") {
+      if (turn === 'BOT') {
         if (isEmpty(state)) {
           const centerAndCorners = [0, 2, 6, 8, 4];
-          const firstMove =
-            centerAndCorners[
-              Math.floor(Math.random() * centerAndCorners.length)
-            ];
-          insertCell(firstMove, "x");
-          setIsHumanMaximizing(false);
-          setTurn("HUMAN");
+          const firstMove = centerAndCorners[Math.floor(Math.random() * centerAndCorners.length)];
+          insertCell(firstMove, 'x');
+          setIsUserMax(false);
+          setTurn('HUMAN');
         } else {
-          const best = getBestMove(state, !isHumanMaximizing, 0, -1);
-          insertCell(best, isHumanMaximizing ? "o" : "x");
-          setTurn("HUMAN");
+          const best = getBestMove(state, !isUserMax, 0, -1);
+          insertCell(best, isUserMax ? 'o' : 'x');
+          setTurn('HUMAN');
         }
       }
     }
@@ -96,7 +91,7 @@ export default function Game(): ReactElement {
           <Text style={styles.titleTxt}>tic-tac-toe</Text>
         </View>
         <Board
-          disabled={Boolean(isTerminal(state)) || turn !== "HUMAN"}
+          disabled={Boolean(isTerminal(state)) || turn !== 'HUMAN'}
           onCellPressed={(cell) => {
             handleOnCellPressed(cell);
           }}
@@ -108,9 +103,9 @@ export default function Game(): ReactElement {
         {gameResult && (
           <View style={styles.modal}>
             <Text style={styles.modalText}>
-              {getWinner(gameResult.winner) === "HUMAN" && "You Won"}
-              {getWinner(gameResult.winner) === "BOT" && "You Lost"}
-              {getWinner(gameResult.winner) === "DRAW" && "IT's a Draw"}
+              {getWinner(gameResult.winner) === 'HUMAN' && 'You Won'}
+              {getWinner(gameResult.winner) === 'BOT' && 'You Lost'}
+              {getWinner(gameResult.winner) === 'DRAW' && "IT's a Draw"}
             </Text>
             <Button
               onPress={() => {

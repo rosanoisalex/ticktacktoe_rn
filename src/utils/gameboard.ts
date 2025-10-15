@@ -1,4 +1,4 @@
-import { BoardState, Moves, BoardResult } from "@utils";
+import { BoardState, Moves, BoardResult } from '@utils';
 
 export const isEmpty = (state: BoardState): boolean => {
   return state.every((cell) => cell === null);
@@ -35,26 +35,22 @@ export const isTerminal = (state: BoardState): BoardResult | false => {
   for (let index = 0; index < winningLines.length; index++) {
     const line = winningLines[index];
     const [cell1, cell2, cell3] = line;
-    if (
-      state[cell1] &&
-      state[cell1] === state[cell2] &&
-      state[cell1] === state[cell3]
-    ) {
+    if (state[cell1] && state[cell1] === state[cell2] && state[cell1] === state[cell3]) {
       const result: BoardResult = {
         winner: state[cell1],
       };
       if (index < 3) {
-        result.direction = "H";
+        result.direction = 'H';
         result.row = index === 0 ? 1 : index === 1 ? 2 : 3;
       }
       if (index >= 3 && index <= 5) {
-        result.direction = "V";
+        result.direction = 'V';
         result.column = index === 3 ? 1 : index === 4 ? 2 : 3;
       }
 
       if (index > 5) {
-        result.direction = "D";
-        result.diagonal = index === 6 ? "MAIN" : "COUNTER";
+        result.direction = 'D';
+        result.diagonal = index === 6 ? 'MAIN' : 'COUNTER';
       }
 
       return result;
